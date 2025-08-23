@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Viaoda+Libre&display=swap');
 :root{
 	--primary:"#ef4a23",
@@ -10,23 +11,10 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* font-family: "Trebuchet MS", sans-serif; */
 	font-family: "Inter", sans-serif;
 }
 
 @layer base {
-	/* h1 {
-		@apply text-4xl font-bold md:text-5xl ;
-	}
-	h2 {
-		@apply text-3xl md:text-4xl font-bold tracking-wider ;
-	}
-	h3 {
-		@apply text-2xl font-bold md:text-3xl;
-	}
-	h4 {
-		@apply text-xl font-bold md:text-2xl ;
-	} */
 	input[type="checkbox"]{
 		@apply h-5 w-5 ring-0 focus:ring-0
 	}
@@ -533,3 +521,18 @@
 	  scroll-behavior: auto !important;
 	}
   }
+
+  /* whatsapp-floating   */
+@keyframes ping-custom {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+.ping-custom {
+      animation: ping-custom 1.5s infinite;
+    }

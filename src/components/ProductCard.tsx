@@ -5,7 +5,6 @@ import type React from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { addToWishlist } from "@/redux/slice/wishlistSlice";
-import clsx from "clsx";
 import Cookies from "js-cookie";
 import { ArrowBigRight, Heart } from "lucide-react";
 import Image from "next/image";
@@ -89,7 +88,7 @@ export default function ProductCard({
     >
       <div className="absolute top-10 bottom-0 left-1/2 -translate-x-1/2 h-[70%] w-[100%] pointer-events-none border-l border-r border-[#eaeaea]" />
       {/* Card content */}
-      <div className="p-6 pb-4">
+      <div className="p-6 pb-4 group">
         {/* Category */}
         <div className="text-[darkgray] text-sm mb-1">
           {product?.category?.name}
@@ -100,31 +99,20 @@ export default function ProductCard({
           {product?.productName}
         </h3>
 
-        {/* Product image */}
-        <div className="flex  justify-center mb-4">
+        <div className="relative w-full h-[200px] overflow-hidden group/image">
           <Image
             src={product?.image || "/placeholder.svg"}
             alt={product?.productName}
             width={200}
             height={200}
-            className={clsx(
-              "w-100 ",
-              product?.productImage?.length > 0
-                ? "group-hover/image:hidden"
-                : ""
-            )}
+            className="absolute top-0 left-0 w-full h-full object-contain transition-transform duration-500 ease-in-out group-hover/image:-translate-x-full"
           />
           <Image
             src={product?.productImage[0] || "/placeholder.svg"}
             alt={product?.productName}
             width={200}
             height={200}
-            className={clsx(
-              "w-100 ",
-              product?.productImage?.length > 0
-                ? "hidden group-hover/image:block"
-                : "hidden"
-            )}
+            className="absolute top-0 left-0 w-full h-full object-contain transition-transform duration-500 ease-in-out translate-x-full group-hover/image:translate-x-0"
           />
         </div>
 
