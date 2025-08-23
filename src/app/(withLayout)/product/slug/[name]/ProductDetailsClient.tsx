@@ -28,8 +28,6 @@ export default function ProductDetailsClient({ product }: Props) {
     freeShipping: product.freeShipping,
   };
 
-  console.log("productInfo", product);
-
   return (
     <section className="max-w-7xl mx-auto p-5">
       {/* Product Header Section */}
@@ -131,26 +129,6 @@ export default function ProductDetailsClient({ product }: Props) {
               </div>
             </div>
 
-            {/* Price and Availability */}
-            {/* <div className="flex items-center gap-5">
-              <span className="text-3xl font-bold text-red-500">
-                ৳{selectedVariant?.displayPrice?.toFixed(2) || product?.displayPrice?.toFixed(2)}
-              </span>
-              {selectedVariant?.price && (
-                <span className="line-through text-gray-500 text-lg">৳{selectedVariant?.price?.toFixed(2)}</span>
-              )}
-            {selectedVariant?.quantity > 0 ? (
-  <span className="bg-green-500 text-white px-2 py-1 rounded-full text-[10px]">
-    In Stock
-  </span>
-) : (
-  <span className="bg-red-500 text-white px-2 py-1 rounded-full text-[10px]">
-    Out of Stock
-  </span>
-)}
-
-            </div> */}
-
             {/* Action Buttons */}
             <div className="flex gap-1">
               <AddToCart
@@ -201,14 +179,6 @@ export default function ProductDetailsClient({ product }: Props) {
         </Link>
       </div>
 
-      {/* Product Details Section */}
-      {/* <section className="bg-white rounded-lg shadow-md p-6 mb-8" id="details">
-        <h3 className="text-2xl font-semibold">Product Details</h3>
-        <ProductInfo product={product} />
-      </section> */}
-
-      {/* Product Information */}
-      {/* SPECIFICATION SECTION */}
       <section
         className="bg-white rounded-lg shadow-md p-6 mb-8"
         id="specification"
@@ -264,20 +234,6 @@ export default function ProductDetailsClient({ product }: Props) {
         </h3>
         <div className="text-[15px] leading-7 text-gray-800 space-y-4">
           <div dangerouslySetInnerHTML={{ __html: product?.description }} />
-
-          {/* {product?.variants?.length > 0 && (
-        <div className="flex gap-3 flex-wrap pt-5">
-          {product.variants.map((variant: any) => (
-            <div
-              key={variant._id}
-              className="text-sm flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-medium shadow-sm hover:bg-blue-200 transition"
-            >
-              <span className="capitalize">{variant.type}</span>
-              <span className="font-semibold">: {variant.value}</span>
-            </div>
-          ))}
-        </div>
-      )} */}
 
           {product?.tags?.length > 0 && (
             <div className="flex gap-4 flex-wrap pt-3">

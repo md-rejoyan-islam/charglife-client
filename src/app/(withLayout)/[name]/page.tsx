@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
-import { Metadata } from "next";
 import { config } from "@/config";
+import { Metadata } from "next";
+import { Suspense } from "react";
 import ProductDetailsWrapper from "../product/slug/[name]/ProductDetailsWrapper";
 
-import { cookies } from "next/headers";
-import DynamicPage from "@/components/DynamicPage/DynamicPage";
 import Loading from "@/app/loading";
+import DynamicPage from "@/components/DynamicPage/DynamicPage";
+import { cookies } from "next/headers";
 
 type Props = {
   params: { name: string };
@@ -16,13 +16,16 @@ async function getProductDetails(name: string) {
     const cookieStore = cookies();
     const offer = cookieStore.get("offer")?.value ?? "";
 
-    const res = await fetch(`${config.backend_url}/item/by-name/${name}?offer=${offer}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${config.backend_url}/item/by-name/${name}?offer=${offer}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) return null;
 
@@ -56,21 +59,20 @@ async function getFallbackProductDetails(name: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProductDetails(params.name);
-  
 
   if (!product) {
     const fallbackProduct = await getFallbackProductDetails(params.name);
 
-    if(!fallbackProduct){
-    return {
-      title: "Product Not Found | Charg-life",
-      description: "The requested product is not available.",
+    if (!fallbackProduct) {
+      return {
+        title: "Product Not Found | Charg-life",
+        description: "The requested product is not available.",
       };
     }
-    
+
     return {
-      title:fallbackProduct.name ,
-    }
+      title: fallbackProduct.name,
+    };
   }
 
   return {
@@ -98,14 +100,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function Loader() {
-  return <Loading/>;
+  return <Loading />;
 }
 
 export default async function ProductDetails({ params }: Props) {
   const product = await getProductDetails(params.name);
+  const productAvailability =
+    product?.inventory[0]?.quantity > 0 ? "InStock" : "OutOfStock";
+
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: product.productName,
+    image: [product.image, ...(product.productImage || [])],
+    description: product.description,
+    sku: product.sku,
+    brand: {
+      "@type": "Brand",
+      name: product.brand.name || "Charg-life",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://charglife.com/${params.name}`,
+      priceCurrency: "BDT",
+      price: product.price,
+      availability: `https://schema.org/${productAvailability}`,
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+
   if (product) {
     return (
       <Suspense fallback={<Loader />}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ProductDetailsWrapper product={product} />
       </Suspense>
     );

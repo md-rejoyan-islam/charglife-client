@@ -44,8 +44,6 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = useState(false);
   const [isCartHovered, setIsCartHovered] = useState(false);
 
-  console.log("ProductCard product:", product);
-
   const hasDiscount =
     product.displayPrice !== 0 && (product?.displayPrice ?? 0) > product.price;
 
