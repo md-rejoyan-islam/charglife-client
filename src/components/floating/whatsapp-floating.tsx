@@ -68,7 +68,7 @@ const WhatsappFloating = () => {
           </svg>
         </div>
       </div>
-      <div className="fixed hidden  group-hover:block right-7 bottom-[150px] rounded-xl border border-green-200 shadow-xl bg-white p-4 max-w-xs transition-all duration-300">
+      <div className="fixed hidden  group-hover:block right-6 bottom-[150px] rounded-xl border border-green-200 shadow-xl bg-white p-4 max-w-xs transition-all duration-300">
         <div className="flex items-center mb-3">
           <div className="flex justify-center items-center w-10 h-10 rounded-full bg-green-100 border-2 border-green-500">
             <svg

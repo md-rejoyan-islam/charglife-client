@@ -10,6 +10,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export default function SmallPromotionalBanners() {
   const [features, setFeatures] = useState([]);
 
+  console.log("features", features);
+
   useEffect(() => {
     const fetchOffers = async () => {
       try {

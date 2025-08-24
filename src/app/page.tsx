@@ -15,6 +15,7 @@ import WhatsappFloating from "@/components/floating/whatsapp-floating";
 import LatestProductsSection from "@/components/home/LatestProductsSection";
 import SaveBig from "@/components/home/SaveBig";
 import SmallPromotionalBanners from "@/components/home/SmallPromotionalBanners";
+import Carousel from "@/components/home/carousel";
 
 // const Popup = lazy(() => import("@/components/ui/Popup"));
 // const Banner = lazy(() => import("@/components/home/Banner"));
@@ -25,6 +26,7 @@ export default async function HomePage() {
       <>
         <Popup />
         <Banner />
+        <Carousel />
         <SmallPromotionalBanners />
         <FeaturedCategories />
         {/* <TopFetured /> */}

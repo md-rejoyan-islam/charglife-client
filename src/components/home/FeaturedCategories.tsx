@@ -100,6 +100,7 @@ export default function FeaturedCategories() {
                   slidesPerView: 6,
                 },
               }}
+              className="justify-center"
             >
               <div className="flex items-center justify-start gap-4">
                 {displayedCategories.map((category) => (
