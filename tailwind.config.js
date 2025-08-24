@@ -17,6 +17,10 @@ module.exports = {
           "2xl": "6rem",
         },
       },
+      boxShadowss: {
+        "custom-shadow":
+          "inset 1px 1px 1px #fff, inset -1px -1px 1px #00000026, .444584px .444584px .628737px -1px #00000042, 1.21072px 1.21072px 1.71222px -1.5px #0000003f, 2.6583px 2.6583px 3.75941px -2.25px #0000003b, 5.90083px 5.90083px 8.34503px -3px #00000031, 10px 10px 21.2132px -3.75px #0000000e, -.5px -.5px #0000000d",
+      },
       colors: {
         background: "hsl(var(--background))",
         color: "#04061C",

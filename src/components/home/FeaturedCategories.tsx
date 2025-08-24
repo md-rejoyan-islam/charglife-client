@@ -58,16 +58,16 @@ export default function FeaturedCategories() {
   return (
     <section className="py-6 bg-gray-50">
       <div className="lg:container mx-auto">
-        <div className="text-center mb-8">
+        <div className="text-center mb-2 sm:mb-4 md:mb-8">
           <h2 className="font-bold text-2xl">Featured Category</h2>
           <p className="font-medium">
             Get Your Desired Product from Featured Category!
           </p>
         </div>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col  items-center">
           {/* Using flex with wrap instead of grid to allow for centered last row */}
-          <div className="lg:hidden w-full overflow-hidden   ">
+          <div className="lg:hidden w-full    overflow-hidden   ">
             <Swiper
               rewind={true}
               modules={[Navigation, Autoplay]}
@@ -100,13 +100,13 @@ export default function FeaturedCategories() {
                   slidesPerView: 6,
                 },
               }}
-              className="justify-center"
+              className="justify-center "
             >
               <div className="flex items-center justify-start gap-4">
                 {displayedCategories.map((category) => (
                   <SwiperSlide
                     key={category._id}
-                    className="py-10"
+                    className="py-6"
                     style={{ marginRight: "0px" }}
                   >
                     <SingleCategory category={category} />
@@ -162,7 +162,7 @@ const SingleCategory = ({ category }: { category: Category }) => {
               .replace(/\s+/g, "-")}?subCategory=${category._id}`
       }
       key={category._id}
-      className=" group rounded-lg  shadow-[0_0_15px_15px_rgba(0,0,3,.05)] p-4 flex flex-col items-center justify-center transition-transform hover:scale-105  w-full lg:w-[calc(16.666%-16px)] xl:w-[calc(12.5%-16px)] max-w-[150px]"
+      className=" group rounded-lg  shadow-[0_0_10px_10px_rgba(0,0,50,.05)] p-4 flex flex-col items-center justify-center transition-transform hover:scale-105  w-full lg:w-[calc(16.666%-16px)] xl:w-[calc(12.5%-16px)] max-w-[150px]"
     >
       <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-3">
         {category.image ? (
