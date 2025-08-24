@@ -9,9 +9,9 @@ interface ICarousel {
   image: string;
 }
 
-import image1 from "./images/Screenshot from 2025-08-24 08-46-58.png";
-import image2 from "./images/Screenshot from 2025-08-24 08-47-26.png";
-import image3 from "./images/Screenshot from 2025-08-24 08-47-41.png";
+import image1 from "./images/Screenshot from 2025-08-24 08-46-58.webp";
+import image2 from "./images/Screenshot from 2025-08-24 08-47-26.webp";
+import image3 from "./images/Screenshot from 2025-08-24 08-47-41.webp";
 
 const Carousel = () => {
   const carousels = [
