@@ -9,17 +9,16 @@ interface ICarousel {
   image: string;
 }
 
-import image1 from "./images/Screenshot from 2025-08-24 08-46-58.webp";
-import image2 from "./images/Screenshot from 2025-08-24 08-47-26.webp";
-import image3 from "./images/Screenshot from 2025-08-24 08-47-41.webp";
+import image1 from "./images/Screenshot from 2025-08-26 10-25-04.webp";
+import image2 from "./images/Screenshot from 2025-08-26 10-26-39.webp";
 
 const Carousel = () => {
   const carousels = [
     { _id: "1", image: image1 },
     { _id: "2", image: image2 },
-    { _id: "3", image: image3 },
-    { _id: "4", image: image1 },
-    { _id: "5", image: image2 },
+    { _id: "3", image: image1 },
+    { _id: "4", image: image2 },
+    { _id: "5", image: image1 },
   ];
   //   const [carousels, setCarousels] = useState<ICarousel[]>([]);
   //   const [loading, setLoading] = useState<boolean>(true);
@@ -51,7 +50,7 @@ const Carousel = () => {
   //   }, []);
 
   return (
-    <section className="pt-8 sm:pt-12 container mx-auto">
+    <section className="pt-2 sm:pt-12 container mx-auto">
       <div className=" w-full group relative">
         <Swiper
           navigation={{
@@ -61,7 +60,7 @@ const Carousel = () => {
           modules={[Navigation, Autoplay]}
           loop={true}
           autoplay={{
-            delay: 4000,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           breakpoints={{
@@ -79,7 +78,7 @@ const Carousel = () => {
           }}
           grabCursor={true}
           slidesPerView={2}
-          spaceBetween={10}
+          spaceBetween={4}
           pagination={{ clickable: true }}
           className=""
         >

@@ -56,7 +56,7 @@ export default function FeaturedCategories() {
   const hasMoreItems = isMobile && categories.length > 6;
 
   return (
-    <section className="py-6 bg-gray-50">
+    <section className="py-4 md:py-6 bg-gray-50">
       <div className="lg:container mx-auto">
         <div className="text-center mb-2 sm:mb-4 md:mb-8">
           <h2 className="font-bold text-2xl">Featured Category</h2>
@@ -87,14 +87,14 @@ export default function FeaturedCategories() {
                 320: {
                   slidesPerView: 3,
                 },
-                520: {
+                420: {
                   slidesPerView: 4,
                 },
-                640: {
-                  slidesPerView: 4,
-                },
-                768: {
+                560: {
                   slidesPerView: 5,
+                },
+                650: {
+                  slidesPerView: 6,
                 },
                 908: {
                   slidesPerView: 6,
@@ -102,7 +102,7 @@ export default function FeaturedCategories() {
               }}
               className="justify-center "
             >
-              <div className="flex items-center justify-start gap-4">
+              <div className="flex  items-center justify-start gap-4">
                 {displayedCategories.map((category) => (
                   <SwiperSlide
                     key={category._id}
@@ -162,14 +162,14 @@ const SingleCategory = ({ category }: { category: Category }) => {
               .replace(/\s+/g, "-")}?subCategory=${category._id}`
       }
       key={category._id}
-      className=" group rounded-lg  shadow-[0_0_10px_10px_rgba(0,0,50,.05)] p-4 flex flex-col items-center justify-center transition-transform hover:scale-105  w-full lg:w-[calc(16.666%-16px)] xl:w-[calc(12.5%-16px)] max-w-[150px]"
+      className=" group rounded-lg  shadow-[0_0_10px_10px_rgba(0,0,50,.05)] p-2  md:p-4  flex flex-col items-center justify-center transition-transform hover:scale-105  w-full lg:w-[calc(16.666%-16px)] xl:w-[calc(12.5%-16px)] max-w-[150px]"
     >
-      <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-3">
+      <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2 md:mb-3">
         {category.image ? (
           <img
             src={category.image || "/placeholder.svg"}
             alt={"product" + category.name}
-            className=" w-16 md:w-20   group-hover:scale-x-[-1] duration-300 rounded-md h-20 object-contain"
+            className=" md:h-20  md:w-20   group-hover:scale-x-[-1] duration-300 rounded-md object-contain"
           />
         ) : (
           <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
@@ -177,7 +177,9 @@ const SingleCategory = ({ category }: { category: Category }) => {
           </div>
         )}
       </div>
-      <span className="text-center text-sm font-medium">{category.name}</span>
+      <span className="text-center text-xs md:text-sm font-medium">
+        {category.name}
+      </span>
     </Link>
   );
 };
