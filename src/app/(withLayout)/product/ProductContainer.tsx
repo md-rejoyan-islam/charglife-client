@@ -149,7 +149,8 @@ export default function ProductContainer() {
     maxPrice: price[1],
     page,
     limit: 20,
-    sortBy: orderBy == "" ? "createdAt" : "displayPrice",
+    // sortBy: orderBy == "" ? "createdAt" : "displayPrice",
+    sortBy: orderBy == "" ? "serialNumber" : "displayPrice",
     sortOrder: orderBy === "asc" ? "asc" : "desc",
   };
 
@@ -167,6 +168,8 @@ export default function ProductContainer() {
             params.append(key, value.toString());
           }
         });
+        console.log("Fetching products with params:", params.toString());
+
         const response = await fetch(
           `${config.backend_url}/item/search?${params.toString()}`
         );

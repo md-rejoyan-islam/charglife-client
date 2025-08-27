@@ -11,6 +11,11 @@ const nextConfig = {
         port: "",
       },
       {
+        protocol: "https",
+        hostname: "charg.rejoyan.me",
+        port: "",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "5000",

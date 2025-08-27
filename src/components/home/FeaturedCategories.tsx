@@ -56,7 +56,7 @@ export default function FeaturedCategories() {
   const hasMoreItems = isMobile && categories.length > 6;
 
   return (
-    <section className="py-4 md:py-6 bg-gray-50">
+    <section className="py-4 md:py-6 lg:py-8 bg-gray-50">
       <div className="lg:container mx-auto">
         <div className="text-center mb-2 sm:mb-4 md:mb-8">
           <h2 className="font-bold text-2xl">Featured Category</h2>
