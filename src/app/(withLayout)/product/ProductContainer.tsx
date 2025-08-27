@@ -56,7 +56,7 @@ export default function ProductContainer() {
   const [subCategory, setSubCategory] = useState<string>(
     searchParams.get("subCategory") ?? ""
   );
-  const [orderBy, setOrderBy] = useState("desc");
+  const [orderBy, setOrderBy] = useState("");
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -151,7 +151,7 @@ export default function ProductContainer() {
     limit: 20,
     // sortBy: orderBy == "" ? "createdAt" : "displayPrice",
     sortBy: orderBy == "" ? "serialNumber" : "displayPrice",
-    sortOrder: orderBy === "asc" ? "asc" : "desc",
+    sortOrder: orderBy === "desc" ? "desc" : "asc",
   };
 
   useEffect(() => {
