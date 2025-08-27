@@ -56,7 +56,7 @@ export default function ProductContainer() {
   const [subCategory, setSubCategory] = useState<string>(
     searchParams.get("subCategory") ?? ""
   );
-  const [orderBy, setOrderBy] = useState("");
+  const [orderBy, setOrderBy] = useState("desc");
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
