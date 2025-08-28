@@ -56,9 +56,9 @@ export default function FeaturedCategories() {
   const hasMoreItems = isMobile && categories.length > 6;
 
   return (
-    <section className="py-4 md:py-6 lg:py-8 bg-gray-50">
+    <section className=" md:py-6 lg:py-8 bg-gray-50">
       <div className="lg:container mx-auto">
-        <div className="text-center mb-2 sm:mb-4 md:mb-8">
+        <div className="hidden text-center mb-2 sm:mb-4 md:mb-8">
           <h2 className="font-bold text-2xl">Featured Category</h2>
           <p className="font-medium">
             Get Your Desired Product from Featured Category!
@@ -67,7 +67,7 @@ export default function FeaturedCategories() {
 
         <div className="flex flex-col  items-center">
           {/* Using flex with wrap instead of grid to allow for centered last row */}
-          <div className="lg:hidden w-full    overflow-hidden   ">
+          <div className="md:hidden w-full px-4 md:px-0   overflow-hidden   ">
             <Swiper
               rewind={true}
               modules={[Navigation, Autoplay]}
@@ -82,19 +82,20 @@ export default function FeaturedCategories() {
               }}
               loop={true}
               centeredSlides={false}
-              spaceBetween={6}
+              spaceBetween={20}
+              slidesPerView={3}
               breakpoints={{
                 320: {
-                  slidesPerView: 3,
-                },
-                420: {
                   slidesPerView: 4,
                 },
-                560: {
+                420: {
                   slidesPerView: 5,
                 },
-                650: {
+                560: {
                   slidesPerView: 6,
+                },
+                650: {
+                  slidesPerView: 7,
                 },
                 908: {
                   slidesPerView: 6,
@@ -114,13 +115,13 @@ export default function FeaturedCategories() {
                 ))}
               </div>
 
-              <div className="absolute inset-0 flex justify-between items-center">
+              <div className="absolute inset-0 mb-4 flex justify-between items-center">
                 <div className="swiper-button-prev  " />
                 <div className="swiper-button-next " />
               </div>
             </Swiper>
           </div>
-          <div className="hidden lg:flex flex-wrap justify-center gap-4 w-full">
+          <div className="hidden md:flex flex-wrap justify-center gap-4 w-full">
             {displayedCategories.map((category) => (
               <SingleCategory category={category} key={category._id} />
             ))}
@@ -162,14 +163,14 @@ const SingleCategory = ({ category }: { category: Category }) => {
               .replace(/\s+/g, "-")}?subCategory=${category._id}`
       }
       key={category._id}
-      className=" group rounded-lg  shadow-[0_0_10px_10px_rgba(0,0,50,.05)] p-2  md:p-4  flex flex-col items-center justify-center transition-transform hover:scale-105  w-full lg:w-[calc(16.666%-16px)] xl:w-[calc(12.5%-16px)] max-w-[150px]"
+      className=" w-fit group  flex flex-col items-center justify-center transition-transform hover:scale-105 "
     >
-      <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2 md:mb-3">
+      <div className="w-20 mx-1 h-20 md:w-24 md:h-24 flex items-center justify-center mb-1 ">
         {category.image ? (
           <img
             src={category.image || "/placeholder.svg"}
             alt={"product" + category.name}
-            className=" md:h-20  md:w-20   group-hover:scale-x-[-1] duration-300 rounded-md object-contain"
+            className=" md:h-24  md:w-24 truncate  group-hover:scale-x-[-1] duration-300 rounded-md md:rounded-lg object-contain"
           />
         ) : (
           <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
@@ -181,5 +182,35 @@ const SingleCategory = ({ category }: { category: Category }) => {
         {category.name}
       </span>
     </Link>
+    // <Link
+    //   href={
+    //     category.type == "category"
+    //       ? `/product/${category?.name
+    //           ?.toLowerCase()
+    //           .replace(/\s+/g, "-")}?category=${category._id}`
+    //       : `/product/${category?.name
+    //           ?.toLowerCase()
+    //           .replace(/\s+/g, "-")}?subCategory=${category._id}`
+    //   }
+    //   key={category._id}
+    //   className=" group rounded-lg  shadow-[0_0_10px_10px_rgba(0,0,50,.05)] p-2  md:p-4  flex flex-col items-center justify-center transition-transform hover:scale-105  w-full lg:w-[calc(16.666%-16px)] xl:w-[calc(12.5%-16px)] max-w-[150px]"
+    // >
+    //   <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2 md:mb-3">
+    //     {category.image ? (
+    //       <img
+    //         src={category.image || "/placeholder.svg"}
+    //         alt={"product" + category.name}
+    //         className=" md:h-20  md:w-20   group-hover:scale-x-[-1] duration-300 rounded-md object-contain"
+    //       />
+    //     ) : (
+    //       <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+    //         <span className="text-xs">No icon</span>
+    //       </div>
+    //     )}
+    //   </div>
+    //   <span className="text-center text-xs md:text-sm font-medium">
+    //     {category.name}
+    //   </span>
+    // </Link>
   );
 };

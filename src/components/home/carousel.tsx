@@ -7,9 +7,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 interface ICarousel {
   _id: string;
   image: string;
+  link: string;
 }
 
 import { config } from "@/config";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Carousel = () => {
@@ -77,13 +79,15 @@ const Carousel = () => {
         >
           {carousels?.map((carousel) => (
             <SwiperSlide key={carousel._id}>
-              <Image
-                src={carousel.image}
-                alt="Carousel Image"
-                width={420}
-                height={220}
-                className="w-full h-full object-cover"
-              />
+              <Link href={carousel?.link || "/"}>
+                <Image
+                  src={carousel.image}
+                  alt="Carousel Image"
+                  width={420}
+                  height={220}
+                  className="w-full h-full object-cover"
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

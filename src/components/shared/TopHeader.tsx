@@ -90,7 +90,7 @@ export default function TopHeader({ menuItems }: { menuItems: any }) {
       </div>
 
       {/* Main header */}
-      <div className="container mx-auto py-3 flex items-center justify-between bg-yellow-400 lg:bg-transparent">
+      <div className="container mx-auto py-2 flex items-center justify-between bg-yellow-400 lg:bg-transparent">
         <div className="flex items-center gap-2">
           <button className="p-2 block lg:hidden">
             <Menu
@@ -117,6 +117,7 @@ export default function TopHeader({ menuItems }: { menuItems: any }) {
               width={170}
               height={120}
               src="/img/black-n-red-logo.png"
+              className="sm:w-full w-32"
               alt="footer-logo"
             />
           </Link>
@@ -141,7 +142,7 @@ export default function TopHeader({ menuItems }: { menuItems: any }) {
               <img
                 src="/img/OFFER.gif"
                 alt="offer"
-                className="h-10 w-20 md:w-16 mt-1"
+                className=" h-8 sm:h-10 w-20 md:w-16 mt-1"
               />
               <div className="absolute -top-6 md:-top-7 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                 Offers

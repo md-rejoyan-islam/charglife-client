@@ -29,10 +29,10 @@ export default async function HomePage() {
         <Carousel />
         <SmallPromotionalBanners />
         <FeaturedCategories />
-        {/* <TopFetured /> */}
-        <LatestProductsSection />
-        <TopRated />
         <BrandVideo />
+        <TopRated />
+        <LatestProductsSection />
+        {/* <TopFetured /> */}
         {/* <FlashDeals /> */}
         {/* <GadgetFest /> */}
         {/* <FeaturedCategory /> */}

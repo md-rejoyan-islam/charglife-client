@@ -1,14 +1,18 @@
 "use client";
-import Image from "next/image";
-import { toast } from "sonner";
-import React, { useEffect, useState } from "react";
-import { useAppSelector } from "@/redux/hooks";
-import { selectedUser, selectedUserToken, setCredentials } from "@/redux/slice/authSlice";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
-import { SubmitHandler, useForm } from "react-hook-form";
 import ClientSecureWrapper from "@/components/hoc/ClientSecureWrapper";
 import { config } from "@/config";
+import { useAppSelector } from "@/redux/hooks";
+import {
+  selectedUser,
+  selectedUserToken,
+  setCredentials,
+} from "@/redux/slice/authSlice";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 export default function AccountUpdateForm() {
   const user = useAppSelector(selectedUser);
@@ -40,7 +44,9 @@ export default function AccountUpdateForm() {
         const userData = await response.json();
         if (userData?.data) {
           setProfileInfo(userData.data);
-          dispatch(setCredentials({ user: { ...user, ...userData.data }, token }));
+          dispatch(
+            setCredentials({ user: { ...user, ...userData.data }, token })
+          );
           reset({
             name: userData.data.name,
             email: userData.data.email,
@@ -55,7 +61,7 @@ export default function AccountUpdateForm() {
     };
 
     fetchUserData();
-  }, [user?.id, token, reset,updated]);
+  }, [user?.id, token, reset, updated]);
 
   // Handle file input change
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,8 +103,10 @@ export default function AccountUpdateForm() {
       const responseData = await response.json();
 
       if (response.ok) {
-        toast.success(responseData.message || "Account details updated successfully.");
-        
+        toast.success(
+          responseData.message || "Account details updated successfully."
+        );
+
         // Update profile info and redux store if avatar is included
         if (responseData?.data) {
           setProfileInfo(responseData.data);
@@ -107,7 +115,9 @@ export default function AccountUpdateForm() {
           setUpdated(!updated);
         }
       } else {
-        toast.error(responseData.message || "Failed to update account details.");
+        toast.error(
+          responseData.message || "Failed to update account details."
+        );
       }
     } catch (error) {
       toast.error("Something went wrong while updating account details.");
@@ -121,20 +131,43 @@ export default function AccountUpdateForm() {
       <div className="max-w-5xl mx-auto mt-10 px-4 md:px-8 h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* User Information Form */}
-          <form onSubmit={handleSubmit(updateAccount)} className="space-y-6 bg-white shadow-lg rounded-lg p-6 border form">
+          <form
+            onSubmit={handleSubmit(updateAccount)}
+            className="space-y-6 bg-white shadow-lg rounded-lg p-6 border form"
+          >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Name
               </label>
-              <input type="text" id="name" {...register("name", { required: "Username is required" })} className="input-field" />
+              <input
+                type="text"
+                id="name"
+                {...register("name", { required: "Username is required" })}
+                className="input-field"
+              />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Email
               </label>
-              <input type="email" id="email" {...register("email", { required: "Email is required" })} className="input-field" />
+              <input
+                type="email"
+                id="email"
+                {...register("email", { required: "Email is required" })}
+                className="input-field"
+              />
             </div>
-            <button type="submit" disabled={loading} className="btn-primary w-full text-white py-2 rounded-lg">
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full text-white py-2 rounded-lg"
+            >
               {loading ? "Updating..." : "Update"}
             </button>
           </form>
@@ -149,9 +182,15 @@ export default function AccountUpdateForm() {
                 className="object-cover"
               />
             </div>
-            <form onSubmit={handleSubmit(updateAccount)} className="flex flex-col items-center mt-6 space-y-4 w-full">
+            <form
+              onSubmit={handleSubmit(updateAccount)}
+              className="flex flex-col items-center mt-6 space-y-4 w-full"
+            >
               <div className="w-full">
-                <label htmlFor="avatar" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="avatar"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Upload Profile Picture
                 </label>
                 <input
@@ -163,7 +202,11 @@ export default function AccountUpdateForm() {
                 />
               </div>
               <ArrowRightIcon width={24} className="text-gray-400" />
-              <button type="submit" disabled={loading} className="btn-primary w-full text-white py-2 rounded-lg">
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary w-full text-white py-2 rounded-lg"
+              >
                 {loading ? "Submitting..." : "Submit Photo"}
               </button>
             </form>

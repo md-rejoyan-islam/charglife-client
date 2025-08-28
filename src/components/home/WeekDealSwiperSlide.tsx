@@ -68,21 +68,38 @@ const WeekDealSwiperSlide = ({
               </div>
             )}
 
-            <div className="flex justify-center ">
+            <div className="flex justify-center  items-start ">
               <Link
                 href={`/${deal?.productName
                   ?.replace(/\s+/g, "-")
                   ?.toLowerCase()}`}
+                className="w-full h-fit"
               >
-                <Image
+                <div className="relative w-full h-[280px] sm:h-[350px]  overflow-hidden group/image">
+                  <Image
+                    src={images[0] || "/placeholder.svg"}
+                    alt={deal?.productName}
+                    width={200}
+                    height={200}
+                    className="absolute top-0 left-0 w-full h-full object-contain transition-transform rounded-md duration-500 ease-in-out group-hover/image:-translate-x-full"
+                  />
+                  <Image
+                    src={images[0] || "/placeholder.svg"}
+                    alt={deal?.productName}
+                    width={200}
+                    height={200}
+                    className="absolute rounded-md top-0 left-0 w-full h-full object-contain transition-transform duration-500 ease-in-out translate-x-full group-hover/image:translate-x-0"
+                  />
+                </div>
+                {/* <Image
                   src={images[0] || "/placeholder.svg"}
                   alt={deal.productName}
                   width={400}
                   height={400}
                   className="mx-auto h-auto max-h-[300px] w-auto object-contain"
-                />
+                /> */}
               </Link>
-              <div className="flex flex-col space-y-4">
+              {/* <div className="flex flex-col space-y-4">
                 {images.slice(1)?.map((thumb: string, i: number) => (
                   <div
                     key={i}
@@ -98,12 +115,12 @@ const WeekDealSwiperSlide = ({
                     />
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* Right side with content */}
-          <div className="md:w-[300px] md:pl-4 flex flex-col mt-4 md:mt-0">
+          <div className="md:w-[300px] lg:w-[280px] xl:w-[350px] 2xl:w-[400px] md:pl-4 flex flex-col mt-4 md:mt-0">
             {/* Navigation controls at top */}
             <div className="flex justify-between items-center mb-6">
               <button
@@ -139,7 +156,7 @@ const WeekDealSwiperSlide = ({
               dangerouslySetInnerHTML={{ __html: deal.keySpec }}
             ></p>
             <p
-              className="mb-3 line-clamp-2 lg:hidden"
+              className="mb-3 line-clamp-5 lg:hidden"
               dangerouslySetInnerHTML={{ __html: deal.keySpec }}
             ></p>
             {/* Price */}

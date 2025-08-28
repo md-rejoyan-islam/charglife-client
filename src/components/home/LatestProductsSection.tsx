@@ -73,14 +73,14 @@ export default function LatestProductsSection() {
     setWeekDeals();
   }, []);
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto pt-3 pb-8 sm:py-8">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Latest Products Section */}
         <div className="lg:col-span-1">
-          <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-200 relative">
-            <h2 className="text-xl md:text-2xl relative inline-block">
+          <div className="flex justify-between items-center mb-4 md:pb-2 border-b border-gray-200 relative">
+            <h2 className="px-2 py-1 bg-yellow-400 w-full md:px-0 md:py-0 md:bg-transparent  text-xl md:text-2xl relative inline-block">
               Latest Products
-              <span className="absolute bottom-[-10px] left-0 w-full h-[2px] bg-yellow-400"></span>
+              <span className="md:block hidden absolute bottom-[-10px] left-0 w-full h-[2px] bg-yellow-400"></span>
             </h2>
           </div>
 
@@ -97,7 +97,7 @@ export default function LatestProductsSection() {
                     alt={product.productName}
                     width={80}
                     height={80}
-                    className="absolute h-full w-full object-contain transition-transform duration-500 ease-in-out group-hover/image:-translate-x-full"
+                    className="absolute rounded-sm h-full w-full object-contain transition-transform duration-500 ease-in-out group-hover/image:-translate-x-full"
                   />
 
                   {/* Second image (hidden by default) */}

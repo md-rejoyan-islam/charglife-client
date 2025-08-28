@@ -1,14 +1,11 @@
 "use client";
 
-import {
-  MagnifyingGlassIcon,
-  StarIcon,
-} from "@heroicons/react/24/solid";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { config } from "@/config";
+import { MagnifyingGlassIcon, StarIcon } from "@heroicons/react/24/solid";
 import { SearchIcon } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type Suggestion = {
   _id: string;
@@ -53,9 +50,7 @@ export default function SearchBox() {
     setOpenMobileBar(false);
   };
   const choose = (s: Suggestion) => {
-    router.push(
-      `/${s.productName.replace(/\s+/g, "-").toLowerCase()}`
-    );
+    router.push(`/${s.productName.replace(/\s+/g, "-").toLowerCase()}`);
     setInput("");
     setSuggestions([]);
     setOpenMobileBar(false);
@@ -104,50 +99,46 @@ export default function SearchBox() {
       {/* ─── mobile trigger + bar ─── */}
       <div className="relative md:hidden">
         {/* icon button */}
-        <button
-          onClick={() => setOpenMobileBar((p) => !p)}
-          className=""
-        >
-           <SearchIcon className="h-7 w-7 text-gray-700 mt-2"/>
+        <button onClick={() => setOpenMobileBar((p) => !p)} className="">
+          <SearchIcon className="h-5 w-5 sm:h-7 sm:w-7 text-gray-700 mt-2" />
         </button>
 
         {/* slide‑down bar */}
         <div
-  className={`fixed top-[60px] left-0 origin-top transform transition-all w-screen z-[20] ${
-    openMobileBar
-      ? "scale-y-100 opacity-100"
-      : "scale-y-0 opacity-0 pointer-events-none"
-  }`}
->
-  <div className="mx-auto max-w-full rounded-lg border border-yellow-400 bg-white p-3 shadow-lg">
-    <div className="flex max-w-md mx-auto">
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        type="text"
-        placeholder="Search products..."
-        className="flex-1 rounded-l-full border border-yellow-400 px-3 py-2 text-sm focus:outline-none"
-      />
-      <button
-        onClick={go}
-        className="rounded-r-full bg-yellow-400 px-3 py-2 text-white"
-      >
-         <SearchIcon className="h-5 w-5 text-gray-700"/>
-      </button>
-    </div>
+          className={`fixed top-[60px] left-0 origin-top transform transition-all w-screen z-[20] ${
+            openMobileBar
+              ? "scale-y-100 opacity-100"
+              : "scale-y-0 opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="mx-auto max-w-full rounded-lg border border-yellow-400 bg-white p-3 shadow-lg">
+            <div className="flex max-w-md mx-auto">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                type="text"
+                placeholder="Search products..."
+                className="flex-1 rounded-l-full border border-yellow-400 px-3 py-2 text-sm focus:outline-none"
+              />
+              <button
+                onClick={go}
+                className="rounded-r-full bg-yellow-400 px-3 py-2 text-white"
+              >
+                <SearchIcon className="h-5 w-5 text-gray-700" />
+              </button>
+            </div>
 
-    <div className="mt-2 max-h-64 overflow-auto">
-  {input.length > 0 && suggestions.length === 0 ? (
-    <p className="text-center text-sm text-gray-500 p-4">No products found</p>
-  ) : (
-    <SuggestList />
-  )}
-</div>
-
-  </div>
-</div>
-
-
+            <div className="mt-2 max-h-64 overflow-auto">
+              {input.length > 0 && suggestions.length === 0 ? (
+                <p className="text-center text-sm text-gray-500 p-4">
+                  No products found
+                </p>
+              ) : (
+                <SuggestList />
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ─── desktop bar ─── */}
@@ -168,15 +159,16 @@ export default function SearchBox() {
           </button>
         </div>
         {input.length > 0 && (
-  <div className="absolute left-0 right-0 z-10 mt-2 max-h-64 overflow-auto rounded-lg shadow-lg bg-white">
-    {suggestions.length === 0 ? (
-      <p className="text-center text-sm text-gray-500 p-4">No products found</p>
-    ) : (
-      <SuggestList />
-    )}
-  </div>
-)}
-
+          <div className="absolute left-0 right-0 z-10 mt-2 max-h-64 overflow-auto rounded-lg shadow-lg bg-white">
+            {suggestions.length === 0 ? (
+              <p className="text-center text-sm text-gray-500 p-4">
+                No products found
+              </p>
+            ) : (
+              <SuggestList />
+            )}
+          </div>
+        )}
       </div>
     </>
   );

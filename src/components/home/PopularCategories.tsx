@@ -1,35 +1,33 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Autoplay, Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Navigation, Autoplay } from "swiper/modules";
 
-import {
-  RightOutlined,
-} from "@ant-design/icons";
-import ProductCard from "../ProductCard";
 import { config } from "@/config";
+import { RightOutlined } from "@ant-design/icons";
+import ProductCard from "../ProductCard";
 
 export default function PopularCategories() {
-      const [campaign, setCampaign] = useState<any>([]);
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const fetchCampaign = async () => {
-        try {
-          const response = await fetch(`${config.backend_url}/item`);
-          const data = await response.json();
-          
-          setCampaign(data?.data?.result || {}); 
-        } catch (error) {
-          console.error("Failed to fetch brand data:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchCampaign();
-    }, []);
+  const [campaign, setCampaign] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCampaign = async () => {
+      try {
+        const response = await fetch(`${config.backend_url}/item`);
+        const data = await response.json();
+
+        setCampaign(data?.data?.result || {});
+      } catch (error) {
+        console.error("Failed to fetch brand data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCampaign();
+  }, []);
 
   return (
     <section className="max-w-7xl mx-auto overflow-hidden py-8 px-4 lg:px-0">
@@ -71,13 +69,13 @@ export default function PopularCategories() {
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView:5 ,
+              slidesPerView: 5,
             },
           }}
         >
-          {campaign?.map((product:any) => (
+          {campaign?.map((product: any) => (
             <SwiperSlide key={product._id}>
-          <ProductCard product={product} key={product._id} />
+              <ProductCard product={product} key={product._id} />
             </SwiperSlide>
           ))}
           <div className="absolute inset-0 flex justify-between items-center">
