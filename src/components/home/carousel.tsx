@@ -82,7 +82,7 @@ const Carousel = () => {
               <Link href={carousel?.link || "/"}>
                 <Image
                   src={carousel.image}
-                  alt="Carousel Image"
+                  alt={`Carousel Image ${carousel._id}`}
                   width={420}
                   height={220}
                   className="w-full h-full object-cover"
